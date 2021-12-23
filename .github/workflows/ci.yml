@@ -39,7 +39,7 @@ jobs:
       - name: Build Android
         working-directory: android
         run: |
-          gem install bundler
+          bundle install
           bundle exec fastlane build_android_dev
 
   # build_ios:
