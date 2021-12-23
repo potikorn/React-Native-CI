@@ -8,7 +8,7 @@ on:
 jobs:
   install_check_lint:
     name: Install & Check lint
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.4.1
@@ -29,15 +29,11 @@ jobs:
   build_android:
     needs: install_check_lint
     name: Android Build
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Build Android
         working-directory: android
         run: |
-          export LC_ALL=en_US.UTF-8
-          export LANG=en_US.UTF-8
-          export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home
-          export PATH=$JAVA_HOME/bin:$PATH
           fastlane build_android_dev
 
   # build_ios:
