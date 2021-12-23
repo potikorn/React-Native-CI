@@ -38,7 +38,7 @@ jobs:
 
       - name: Install Fastlane
         run: |
-         ls -l && cd android 
+         ls -l
 
       - name: Build Android
         working-directory: android
