@@ -30,6 +30,7 @@ jobs:
     needs: install_check_lint
     name: Android Build
     runs-on: ubuntu-latest
+    working-directory: android
     steps:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
@@ -38,9 +39,8 @@ jobs:
 
       - name: Setup Fastlane
         run: bundle install
-        
+
       - name: Build Android
-        working-directory: android
         run: |
           gem install bundler
           bundle exec fastlane build_android_dev
