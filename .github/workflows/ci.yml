@@ -26,16 +26,19 @@ jobs:
       - name: Install node_modules
         run: npm install
 
-      - uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '2.6'
-          bundler-cache: true
-
   build_android:
     needs: install_check_lint
     name: Android Build
     runs-on: ubuntu-latest
     steps:
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '2.7.2'
+
+      - name: Setup Fastlane
+        run: bundle install
+        
       - name: Build Android
         working-directory: android
         run: |
