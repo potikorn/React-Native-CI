@@ -1,0 +1,57 @@
+name: Simple Continuous Integration
+
+on:
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  install_check_lint:
+    name: Install & Check lint
+    runs-on: macOS-latest
+    steps:
+      - name: Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.4.1
+        with:
+          access_token: ${{ github.token }}
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Specify node version
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
+
+      - name: Install node_modules
+        run: npm install
+
+  build_android:
+    needs: install_check_lint
+    name: Android Build
+    runs-on: ['self-hosted', 'macos']
+    steps:
+      - name: Build Android
+        working-directory: android
+        run: |
+          export LC_ALL=en_US.UTF-8
+          export LANG=en_US.UTF-8
+          export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home
+          export PATH=$JAVA_HOME/bin:$PATH
+          fastlane build_android_dev
+
+  # build_ios:
+  #   needs: install_check_lint
+  #   name: iOS Build
+  #   runs-on: ['self-hosted', 'macos']
+  #   steps:
+  #     - name: Install Pods
+  #       run: |
+  #         ./scripts/cleanup.sh
+  #     - name: Build iOS
+  #       working-directory: ios
+  #       run: |
+  #         export LC_ALL=en_US.UTF-8
+  #         export LANG=en_US.UTF-8
+  #         fastlane update_provisioning_dev
+  #         fastlane build_dev
