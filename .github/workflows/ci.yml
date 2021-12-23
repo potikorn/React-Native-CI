@@ -36,10 +36,6 @@ jobs:
         with:
           ruby-version: '2.7.2'
 
-      - name: Setup Fastlane
-        working-directory: android
-        run: bundle install
-
       - name: Build Android
         working-directory: android
         run: |
