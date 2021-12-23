@@ -36,6 +36,10 @@ jobs:
         with:
           ruby-version: '2.7.2'
 
+      - name: Install Fastlane
+        run: |
+         cd android && bundle install
+
       - name: Build Android
         working-directory: android
         run: |
