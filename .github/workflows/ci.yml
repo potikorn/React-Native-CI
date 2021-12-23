@@ -4,6 +4,7 @@ on:
   pull_request:
     branches:
       - develop
+  workflow_dispatch:
 
 jobs:
   install_check_lint:
@@ -26,16 +27,15 @@ jobs:
       - name: Install node_modules
         run: npm install
 
-      - uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '2.6'
-          bundler-cache: true
-
   build_android:
     needs: install_check_lint
     name: Android Build
     runs-on: ubuntu-latest
     steps:
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '2.6'
+          bundler-cache: true
       - name: Build Android
         working-directory: android
         run: |
