@@ -39,4 +39,5 @@ platform :android do
   desc "Build Dev App"
   lane :build_android_dev do
     gradle(task: "clean assembleRelease")
+  end
 end

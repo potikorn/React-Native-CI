@@ -8,7 +8,7 @@ on:
 jobs:
   install_check_lint:
     name: Install & Check lint
-    runs-on: macOS-latest
+    runs-on: macos-latest
     steps:
       - name: Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.4.1
@@ -29,7 +29,7 @@ jobs:
   build_android:
     needs: install_check_lint
     name: Android Build
-    runs-on: ['self-hosted', 'macos']
+    runs-on: macos-latest
     steps:
       - name: Build Android
         working-directory: android

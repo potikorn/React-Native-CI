@@ -23,6 +23,14 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 Runs all the tests
 
+### android hello
+
+```sh
+[bundle exec] fastlane android hello
+```
+
+Hello lane
+
 ### android beta
 
 ```sh
@@ -38,6 +46,14 @@ Submit a new Beta Build to Crashlytics Beta
 ```
 
 Deploy a new version to the Google Play
+
+### android build_android_dev
+
+```sh
+[bundle exec] fastlane android build_android_dev
+```
+
+Build Dev App
 
 ----
 
