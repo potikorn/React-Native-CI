@@ -32,7 +32,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Setup Ruby
-        working-directory: android
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '2.7.2'
