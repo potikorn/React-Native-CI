@@ -26,6 +26,11 @@ jobs:
       - name: Install node_modules
         run: npm install
 
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '2.6'
+          bundler-cache: true
+
   build_android:
     needs: install_check_lint
     name: Android Build
